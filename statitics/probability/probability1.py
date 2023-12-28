@@ -1,24 +1,18 @@
-# import numpy as np
-# import matplotlib.pyplot as plt
-# rolls=np.random.randint(1,7,200)
-# print(rolls)
-
+import numpy as np
 import matplotlib.pyplot as plt
+rolls=np.random.randint(1,7,20)
+print(rolls)
+empirical_prob=[np.sum(rolls==i)/20 for i in range(1,7)]
+print(empirical_prob)
 
-# Sample data
-x = [1, 2, 3, 4, 5]
-y = [2, 4, 6, 5, 10]
+outcome_counts = np.bincount(rolls)[1:]
+probabilities = outcome_counts /len(rolls)
 
-# Create a line plot
-plt.plot(x, y, label='Linear Function')
+labels = [str(i) for i in range(1, 7)]
+x = np.arange(len(labels))
 
-# Add labels and title
-plt.xlabel('X-axis')
-plt.ylabel('Y-axis')
-plt.title('Simple Line Plot')
-
-# Add a legend
-plt.legend()
-
-# Display the plot
+plt.bar(x, probabilities, tick_label=labels)
+plt.xlabel('Outcome')
+plt.ylabel('Probability')
+plt.title('Probability Distribution of a Fair Six-sided Die')
 plt.show()
